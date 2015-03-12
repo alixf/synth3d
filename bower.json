@@ -1,0 +1,28 @@
+{
+  "name": "Synth3D",
+  "version": "0.1",
+  "homepage": "https://github.com/eolhing/synth3d",
+  "authors": [
+    "Alix Fumoleau <alix.fumoleau@gmail.com>"
+  ],
+  "description": "Sound Synthesis in a 3D Environment, in your Web Browser !",
+  "main": "index.html",
+  "keywords": [
+    "Sound",
+    "Synthesis",
+    "3D",
+    "Web"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "threejs": "*"
+  }
+}
