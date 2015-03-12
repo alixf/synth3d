@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-        <script src='bower_components/threejs/build/three.js'></script>
+        <script src='three.js'></script>
         <script src='OrbitControls.js'></script>
         <script src="TransformControls.js"></script>
     </head>
@@ -36,6 +36,27 @@
                 border-right : 2px solid grey;
                 box-shadow : 0px 0px 5px #000;
             }
+            aside .tool
+            {
+                border : 1px solid grey;
+                padding : 5px;
+                margin : 5px;
+                display : flex;
+                align-items: center;
+                background-color : #FFF;
+                transition : all 0.2s linear;
+                
+
+            }
+            aside .tool:hover
+            {
+                background-color : #DDD;
+            }
+            .tool img
+            {
+                max-width : 50px;
+                margin-right : 10px;
+            }
             #container
             {
                 flex-grow : 1;
@@ -47,6 +68,14 @@
         </style>
         <aside>
             <h1>Synth3D</h1>
+            <hr>
+            <div class="tool"><img src="textures/blocks_05.png" alt=""><div>Wave Block</div></div>
+            <div class="tool"><img src="textures/blocks_06.png" alt=""><div>Beat Block</div></div>
+            <div class="tool"><img src="textures/blocks_07.png" alt=""><div>MIDI Block</div></div>
+            <hr>
+            <div class="tool"><img src="textures/blocks_09.png" alt=""><div>AM Modulation</div></div>
+            <div class="tool"><img src="textures/blocks_10.png" alt=""><div>FM Modulation</div></div>
+            <div class="tool"><img src="textures/blocks_11.png" alt=""><div>Delay</div></div>
         </aside>
         <div id="container"></div>
         <script type="text/javascript" src="main.js"></script>

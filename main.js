@@ -131,8 +131,7 @@ window.onload = function()
     {
         requestAnimationFrame(render);
         camera.updateMatrixWorld();
-
-
+        
         raycaster.setFromCamera(mouse, camera);
         var intersects = raycaster.intersectObjects(scene.children);
 
