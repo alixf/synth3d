@@ -1,6 +1,7 @@
+var blocksTexture = THREE.ImageUtils.loadTexture('textures/blocks_01.png');
+
 window.onload = function()
 {
-    var blocksTexture = THREE.ImageUtils.loadTexture('textures/blocks_01.png');
 
     var container = document.querySelector("#container");
     var renderer = new THREE.WebGLRenderer({antialias : true});
@@ -32,12 +33,12 @@ window.onload = function()
     scene.add(grid);
 
     var geometry = new THREE.PlaneGeometry(100, 100);
-    var material = new THREE.MeshBasicMaterial({color: 0xffffff, side: THREE.DoubleSide});
+    var material = new THREE.MeshBasicMaterial({color: 0xffffff});
     var plane = new THREE.Mesh(geometry, material);
-    plane.rotateOnAxis(new THREE.Vector3(1,0,0), 1.57);
-    plane.translateZ(0.01);
-plane.castShadow = false;
-plane.receiveShadow = true;
+    plane.rotateOnAxis(new THREE.Vector3(1,0,0), -1.57);
+    plane.translateZ(-0.01);
+    plane.castShadow = false;
+    plane.receiveShadow = true;
     scene.add(plane);
 
     // Object
