@@ -99,8 +99,7 @@
                 
                 // Transform control
                 control = new THREE.TransformControls(camera, renderer.domElement);
-                control.attach(mesh);
-				scene.add(control);
+                scene.add(control);
             
                 mouse = new THREE.Vector2();
                 var raycaster = new THREE.Raycaster();
@@ -111,6 +110,31 @@
                     mouse.y = -(event.offsetY / container.offsetHeight) * 2 + 1;
                 }
                 container.addEventListener('mousemove', onMouseMove);
+                function onMouseClick(event)
+                {
+				    event.preventDefault();
+                    mouse.x = (event.offsetX / container.offsetWidth) * 2 - 1;
+                    mouse.y = -(event.offsetY / container.offsetHeight) * 2 + 1;
+                    raycaster.setFromCamera(mouse, camera);
+                    var intersects = raycaster.intersectObjects(scene.children);
+                    
+                    var found = false;
+                 
+                    for (var i = 0; i < intersects.length; i++)
+                    {
+                        if(intersects[i].object == mesh)
+                        {   
+                            control.attach(mesh);
+                            found = true;
+                        }
+                    }
+                    if(!found)
+                    {
+                        control.detach(control.object);
+                    }
+                }
+                container.addEventListener('click', onMouseClick);
+				
                 
                 // On Resize
                 function onResize()
@@ -141,7 +165,7 @@
                     for (i = 0; i < intersects.length; i++)
                     {
                         if(intersects[i].object == mesh)
-                            intersects[i].object.material.color = new THREE.Color(0xff0000);
+                            intersects[i].object.material.color = new THREE.Color(0xffdddd);
                     }
                     
                     renderer.render(scene, camera);
