@@ -33,5 +33,6 @@ window.TransformTool = function(scene, camera, inputTarget)
             this.control.attach(block);
         
         this.block = block;
+        document.querySelector("synth3d-inspector").block = block;
     }
 };

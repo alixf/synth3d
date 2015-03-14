@@ -7,5 +7,6 @@ window.ListenerBlock = function()
     mesh.castShadow = true;
     mesh.receiveShadow = true;
     mesh.transformable = true;
+    mesh.blockType = "listener";
     return mesh;
 };

@@ -1,0 +1,66 @@
+<link rel="import" href="bower_components/polymer/polymer.html">
+<polymer-element name="synth3d-inspector">
+    <template>
+        <link rel="stylesheet" href="style.css">
+        
+        <template bind if="{{block == null}}">
+            <div class="info">Sélectionnez un bloc pour pouvoir l'éditer</div>
+        </template>
+        
+        <template bind if="{{block.blockType == 'wave'}}">
+            <div id="waveBlock" class="blocEditor">
+                <h2>Bloc Sinuoïde</h2>
+                <div class="info">Ce bloc permet de générer un signal sinusoïdale</div>
+                <div><label for="">Fréquence</label><input type="number"></div>
+                <div><label for="">Amplitude</label><input type="number"></div>
+            </div>
+        </template>
+        <template bind if="{{block.blockType == 'adsr'}}">
+            <div id="adsrBlock" class="blocEditor">
+                <h2>Bloc ADSR</h2>
+                <div class="info">Ce bloc permet d'appliquer un enveloppe ADSR à un signal</div>
+                <div><label for="">Attack : Amplitude</label><input type="number"></div>
+                <div><label for="">Attack : Timing</label><input type="number"></div>
+                <div><label for="">Decay : Amplitude</label><input type="number"></div>
+                <div><label for="">Decay : Timing</label><input type="number"></div>
+                <div><label for="">Sustain : Amplitude</label><input type="number"></div>
+                <div><label for="">Sustain : Timing</label><input type="number"></div>
+                <div><label for="">Release : Timing</label><input type="number"></div>
+            </div>
+        </template>
+        <template bind if="{{block.blockType == 'midi'}}">
+            <div id="midiBlock" class="blocEditor">
+                <h2>Bloc MIDI</h2>
+                <div class="info">Ce bloc permet de générer un signal MIDI</div>
+                <div><label for="">Note</label><input type="number"></div>
+            </div>
+        </template>
+        <template bind if="{{block.blockType == 'am'}}">
+            <div id="amBlock" class="blocEditor">
+                <h2>Bloc AM</h2>
+                <div class="info">Ce bloc permet de moduler l'aplitude d'un signal grâce à celui d'un autre</div>
+
+            </div>
+        </template>
+        <template bind if="{{block.blockType == 'fm'}}">
+            <div id="fmBlock" class="blocEditor">
+                <h2>Bloc FM</h2>
+                <div class="info">Ce bloc permet de moduler la fréquence d'un signal grâce à celle d'un autre</div>
+
+            </div>
+        </template>
+        <template bind if="{{block.blockType == 'delay'}}">
+            <div id="delayBlock" class="blocEditor">
+                <h2>Bloc Délai</h2>
+                <div class="info">Ce bloc permet de délayer un signal</div>
+                <div><label for="">Délai</label><input type="number"></div>
+
+            </div>
+        </template>
+    </template>
+    <script>
+        Polymer({
+            block : null,
+        });
+    </script>
+</polymer-element>

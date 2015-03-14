@@ -7,5 +7,6 @@ window.ADSRBlock = function()
     mesh.castShadow = true;
     mesh.receiveShadow = true;
     mesh.transformable = true;
+    mesh.blockType = "adsr";
     return mesh;
 };

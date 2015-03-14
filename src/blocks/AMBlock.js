@@ -7,5 +7,6 @@ window.AMBlock = function()
     mesh.castShadow = true;
     mesh.receiveShadow = true;
     mesh.transformable = true;
+    mesh.blockType = "am";
     return mesh;
 };

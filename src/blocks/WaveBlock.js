@@ -7,5 +7,6 @@ window.WaveBlock = function()
     mesh.castShadow = true;
     mesh.receiveShadow = true;
     mesh.transformable = true;
+    mesh.blockType = "wave";
     return mesh;
 };

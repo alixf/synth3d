@@ -7,5 +7,6 @@ window.MIDIBlock = function()
     mesh.castShadow = true;
     mesh.receiveShadow = true;
     mesh.transformable = true;
+    mesh.blockType = "midi";
     return mesh;
 };

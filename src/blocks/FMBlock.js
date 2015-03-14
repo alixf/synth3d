@@ -7,5 +7,6 @@ window.FMBlock = function()
     mesh.castShadow = true;
     mesh.receiveShadow = true;
     mesh.transformable = true;
+    mesh.blockType = "fm";
     return mesh;
 };

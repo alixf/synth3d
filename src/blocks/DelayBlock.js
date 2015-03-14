@@ -7,5 +7,6 @@ window.DelayBlock = function()
     mesh.castShadow = true;
     mesh.receiveShadow = true;
     mesh.transformable = true;
+    mesh.blockType = "delay";
     return mesh;
 };

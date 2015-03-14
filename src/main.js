@@ -28,7 +28,7 @@ window.onload = function()
     scene.add(camera);
     
     // Orbital controls
-    var controls = new THREE.OrbitControls(camera);
+    var controls = new THREE.OrbitControls(camera, renderer.domElement);
     
     // Light Setup
     scene.add(new LightSetup(0x404040, [{x : 30, y: 80, z : 50, intensity : 1.0},{x : -30, y: 100, z : -50, intensity : 0.33},{x : -30, y : 90, z : 50, intensity : 0.67}]));

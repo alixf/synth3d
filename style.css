@@ -20,12 +20,12 @@ aside
 {
     width : 20%;
     flex-grow : 0;
-    display : flex;
-    flex-direction: column;
     background-color: #f2f2f2;
     align-items: stretch;
-    border-right : 2px solid grey;
-    box-shadow : 0px 0px 5px #000;
+    box-shadow : 0px 0px 5px rgba(0,0,0,0.5);
+    position : relative;
+    z-index : 3;
+    overflow-y: scroll;
 }
 aside .tool
 {
@@ -56,4 +56,14 @@ aside .tool:hover
 h1
 {
     text-align: center;
+}
+.info
+{
+    text-align : center;
+    margin : 5px;
+    font-style: italic;
+}
+.blocEditor
+{
+    margin : 10px;
 }

@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <script type="text/javascript" src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
         <script type="text/javascript" src='src/libs/three.js'></script>
         <script type="text/javascript" src='src/controls/OrbitControls.js'></script>
         <script type="text/javascript" src='src/controls/TransformControls.js'></script>
@@ -18,10 +19,12 @@
         <script type="text/javascript" src='src/tools/CreateTool.js'></script>
         <script type="text/javascript" src='src/tools/TransformTool.js'></script>
         <script type="text/javascript" src='src/main.js'></script>
+        
+        <link rel="import" href="synth3d-inspector.html">
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <aside>
+        <aside id="blocks">
             <h1>Synth3D</h1>
             <hr>
             <div class="tool" id="waveBlock"><img src="textures/blocks_05.png" alt=""><div>Wave Block</div></div>
@@ -33,5 +36,8 @@
             <div class="tool" id="delayBlock"><img src="textures/blocks_11.png" alt=""><div>Delay</div></div>
         </aside>
         <div id="container"></div>
+        <aside id="inspector">
+            <synth3d-inspector></synth3d-inspector>
+        </aside>
     </body>
 </html>

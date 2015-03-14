@@ -20,7 +20,7 @@ window.CreateTool = function(scene, camera)
     this.onClick = function(event)
     {
         window.currentTool = Tools.transformTool;
-        window.currentTool.block = this.block;
+        window.currentTool.setBlock(this.block);
         this.setBlock(null);
     }
     
