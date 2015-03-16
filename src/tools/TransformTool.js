@@ -13,7 +13,13 @@ window.TransformTool = function(scene, camera, inputTarget)
 
         var found = false;
         for (var i = 0; i < intersects.length; i++)
-            found = found || (intersects[i].object.transformable);
+        {
+            if(intersects[i].object.transformable)
+            {
+                found = true;
+                this.setBlock(intersects[i].object);
+            }
+        }
         if(!found)
         {
             this.setBlock(null);
