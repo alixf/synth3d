@@ -1,25 +1,44 @@
 <link rel="import" href="bower_components/polymer/polymer.html">
 <polymer-element name="synth3d-inspector">
     <template>
+        
         <link rel="stylesheet" href="style.css">
+        <style>
+            button
+            {
+                margin: 5px;
+                color : white;
+                font-size : 1em;
+                text-transform:uppercase;
+                border : none;
+                background-color : #0080FF;
+                box-shadow : 0px 1px 3px rgba(0,0,0,0.5);
+                cursor : pointer;
+            }
+        </style>
         
         <template bind if="{{block == null}}">
             <div class="info">Sélectionnez un bloc pour pouvoir l'éditer</div>
         </template>
         
-        <template bind if="{{block.blockType == 'wave'}}">
+        <template if="{{block.blockType == 'wave'}}">
             <div id="waveBlock" class="blocEditor">
-                <h2>Bloc Sinuoïde</h2>
+                <h2>Bloc Oscillateur</h2>
                 <div class="info">Ce bloc permet de générer un signal sinusoïdale</div>
-                <div><label for="">Fréquence</label><input type="number" step="any"></div>
-                <div><label for="">Amplitude</label><input type="number" step="any"></div>
-                <button class="linkBlock" onclick={{link}}>Lier</button>
+                <h3>Entrée</h3>
+                <div><label>Fréquence d'entrée</label><input type="number" step="any"></div>
+                <div><label>Amplitude d'entrée</label><input type="number" step="any"></div>
+                <h3>Sortie</h3>
+                <div layout vertical>
+                                <button class="linkBlock" on-click={{linkFreq}}>Lier la fréquence de sortie</button>
+                                <button class="linkBlock" on-click={{linkAmp}}>Lier l'ampltide de sortie</button>                   </div>
             </div>
         </template>
-        <template bind if="{{block.blockType == 'adsr'}}">
+        <template if="{{block.blockType == 'adsr'}}">
             <div id="adsrBlock" class="blocEditor">
                 <h2>Bloc ADSR</h2>
-                <div class="info">Ce bloc permet d'appliquer un enveloppe ADSR à un signal</div>
+                <div class="info">Ce bloc permet d'appliquer une enveloppe ADSR à un signal</div>
+                <h3>Entrée</h3>
                 <div><label for="">Attack : Amplitude</label><input type="number" step="any"></div>
                 <div><label for="">Attack : Timing</label><input type="number" step="any"></div>
                 <div><label for="">Decay : Amplitude</label><input type="number" step="any"></div>
@@ -27,45 +46,55 @@
                 <div><label for="">Sustain : Amplitude</label><input type="number" step="any"></div>
                 <div><label for="">Sustain : Timing</label><input type="number" step="any"></div>
                 <div><label for="">Release : Timing</label><input type="number" step="any"></div>
-                <button class="linkBlock" onclick="{{link}}">Lier</button>
+                <h3>Sortie</h3>
+                <div layout vertical>
+                                <button class="linkBlock" on-click={{linkFreq}}>Lier la fréquence de sortie</button>
+                                <button class="linkBlock" on-click={{linkAmp}}>Lier l'ampltide de sortie</button>                   </div>
             </div>
         </template>
-        <template bind if="{{block.blockType == 'midi'}}">
+        <template if="{{block.blockType == 'midi'}}">
             <div id="midiBlock" class="blocEditor">
                 <h2>Bloc MIDI</h2>
                 <div class="info">Ce bloc permet de générer un signal MIDI</div>
+                <h3>Entrée</h3>
                 <div><label for="">Note</label><input type="number" step="any"></div>
-                <button class="linkBlock" onclick="{{link}}">Lier</button>
+                <h3>Sortie</h3>
+                <div layout vertical>
+                                <button class="linkBlock" on-click={{linkFreq}}>Lier la fréquence de sortie</button>
+                                <button class="linkBlock" on-click={{linkAmp}}>Lier l'ampltide de sortie</button>                   </div>
             </div>
         </template>
-        <template bind if="{{block.blockType == 'am'}}">
-            <div id="amBlock" class="blocEditor">
-                <h2>Bloc AM</h2>
-                <div class="info">Ce bloc permet de moduler l'aplitude d'un signal grâce à celui d'un autre</div>
-                <button class="linkBlock" onclick="{{link}}">Lier</button>
-            </div>
-        </template>
-        <template bind if="{{block.blockType == 'fm'}}">
-            <div id="fmBlock" class="blocEditor">
-                <h2>Bloc FM</h2>
-                <div class="info">Ce bloc permet de moduler la fréquence d'un signal grâce à celle d'un autre</div>
-                <button class="linkBlock" onclick="{{link}}">Lier</button>
-            </div>
-        </template>
-        <template bind if="{{block.blockType == 'delay'}}">
+        <template if="{{block.blockType == 'delay'}}">
             <div id="delayBlock" class="blocEditor">
                 <h2>Bloc Délai</h2>
                 <div class="info">Ce bloc permet de délayer un signal</div>
+                <h3>Entrée</h3>
                 <div><label for="">Délai</label><input type="number" step="any"></div>
-                <button class="linkBlock" onclick="{{link}}">Lier</button>
+                <h3>Sortie</h3>
+                <div layout vertical>
+                                <button class="linkBlock" on-click={{linkFreq}}>Lier la fréquence de sortie</button>
+                                <button class="linkBlock" on-click={{linkAmp}}>Lier l'ampltide de sortie</button>                   </div>
             </div>
         </template>
     </template>
     <script>
         Polymer({
             block : null,
-            link : function()
+            linkFreq : function()
             {
+                var blockToLink = this.block;
+                window.currentTool.setBlock(null);
+                window.currentTool = Tools.linkTool;
+                window.currentTool.setType('freq');
+                window.currentTool.setBlock(blockToLink);
+            },
+            linkAmp : function()
+            {
+                var blockToLink = this.block;
+                window.currentTool.setBlock(null);
+                window.currentTool = Tools.linkTool;
+                window.currentTool.setType('amp');
+                window.currentTool.setBlock(blockToLink);
             }
         });
     </script>

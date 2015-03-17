@@ -45,7 +45,7 @@ window.onload = function()
         defaultTool : new DefaultTool(scene, camera),
         createTool : new CreateTool(scene, camera),
         transformTool : new TransformTool(scene, camera, renderer.domElement),
-        //linkTool : new LinkTool(),
+        linkTool : new LinkTool(scene, camera),
     }
     window.currentTool = Tools.defaultTool;
     
@@ -59,7 +59,7 @@ window.onload = function()
         mouse.x = (event.offsetX / container.offsetWidth) * 2 - 1;
         mouse.y = -(event.offsetY / container.offsetHeight) * 2 + 1;
         
-        if(currentTool != null)
+        if(currentTool != null && currentTool.onMove != null)
             currentTool.onMove(event);
     }
     container.addEventListener('mousemove', onMouseMove);
@@ -69,11 +69,11 @@ window.onload = function()
     {
         event.preventDefault();
         
-        if(currentTool != null)
+        if(currentTool != null && currentTool.onClick != null)
             currentTool.onClick(event);
     }
     container.addEventListener('click', onMouseClick);
-
+    
     // Event : Resize
     function onResize()
     {
@@ -88,6 +88,10 @@ window.onload = function()
     var render = function()
     {
         requestAnimationFrame(render);
+        
+        if(currentTool != null && currentTool.update != null)
+            currentTool.update();
+        
         renderer.render(scene, camera);
     };
     render();
