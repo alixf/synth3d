@@ -37,7 +37,7 @@ window.onload = function()
     scene.add(new Ground());
 
     // Default Listener Block
-    //scene.add(new ListenerBlock());
+    scene.add(new ListenerBlock());
 
     // Tools
     window.Tools =
