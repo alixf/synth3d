@@ -26,8 +26,9 @@
                 <h2>Bloc Oscillateur</h2>
                 <div class="info">Ce bloc permet de générer un signal sinusoïdale</div>
                 <h3>Entrée</h3>
-                <div><label>Fréquence d'entrée</label><input type="number" step="any"></div>
-                <div><label>Amplitude d'entrée</label><input type="number" step="any"></div>
+                <div><label>Fréquence d'entrée</label><input id="waveFreq" type="number" step="1" min="0" max="20000" value="{{block.audioNode.frequency.value}}"></div>
+                <div><label>Amplitude d'entrée</label><input id="waveAmp" type="number" step="0.1" min="0" max="1" value="{{block.audioNodeGain.gain.value}}"></div>
+                </div>
                 <h3>Sortie</h3>
                 <div layout vertical>
                                 <button class="linkBlock" on-click={{linkFreq}}>Lier la fréquence de sortie</button>
