@@ -20,6 +20,11 @@ window.onload = function()
     renderer.setSize(container.innerWidth, container.innerHeight);
     container.appendChild(renderer.domElement);
     var scene = new THREE.Scene();
+
+    // Audio Context
+
+    AudioContext = AudioContext || webkitAudioContext;
+    audioCtx = new AudioContext();
     
     // Camera
     var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 1000);
