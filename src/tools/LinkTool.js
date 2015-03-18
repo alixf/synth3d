@@ -33,6 +33,14 @@ window.LinkTool = function(scene, camera)
                     this.block.audioNodeGain.connect(this.hoverBlock.audioNode);
                 }
             }
+            if(this.type == 'freq')
+            {
+                if(this.hoverBlock.blockType == 'wave')
+                {
+                    this.block.sons.push(this.hoverBlock);
+                    this.block.updateFrequencies();
+                }
+            }
             if(this.type == 'amp')
             {
                 this.hoverBlock.ampIn = this.block;
@@ -88,7 +96,7 @@ window.LinkTool = function(scene, camera)
         var curve = new THREE.SplineCurve3([start/*+offset*/, end/*+offset*/]);
         var geometry = new THREE.Geometry();
         geometry.vertices = curve.getPoints(10);
-        var material = new THREE.LineBasicMaterial({color : type == 'freq' ? 0xff0000 : 0x0000ff, linewidth : 5});
+        var material = new THREE.LineBasicMaterial({color : type == 'signal' ? 0xff0000 : 0x0000ff, linewidth : 5});
         var newLink = new THREE.Line(geometry, material);
         scene.add(newLink);
         return newLink;

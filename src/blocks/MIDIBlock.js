@@ -8,5 +8,16 @@ window.MIDIBlock = function()
     mesh.receiveShadow = true;
     mesh.transformable = true;
     mesh.blockType = "midi";
+    mesh.note = 69;
+    mesh.sons = [];
+    mesh.updateFrequencies = function()
+    {
+    	for (var son of this.sons)
+    	{
+    		son.audioNode.frequency.value = Math.pow(2,(this.note-69)/12)*440; //Note to frequency conversion
+    	}
+    	return this.note;
+    };
     return mesh;
 };
+
