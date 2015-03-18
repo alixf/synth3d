@@ -11,6 +11,5 @@ window.WaveBlock = function()
     mesh.blockType = "wave";
     mesh.audioNodeGain = audioCtx.createGain();
     mesh.audioNode.connect(mesh.audioNodeGain);
-    mesh.audioNodeGain.connect(audioCtx.destination);
     return mesh;
 };

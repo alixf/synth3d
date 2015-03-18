@@ -26,13 +26,12 @@
                 <h2>Bloc Oscillateur</h2>
                 <div class="info">Ce bloc permet de générer un signal sinusoïdale</div>
                 <h3>Entrée</h3>
-                <div><label>Fréquence d'entrée</label><input id="waveFreq" type="number" step="1" min="0" max="20000" value="{{block.audioNode.frequency.value}}"></div>
-                <div><label>Amplitude d'entrée</label><input id="waveAmp" type="number" step="0.1" min="0" max="1" value="{{block.audioNodeGain.gain.value}}"></div>
+                <div><label>Fréquence d'entrée (Hz) : </label><input id="waveFreq" type="number" step="1" min="0" max="20000" value="{{block.audioNode.frequency.value}}"></div>
+                <div><label>Amplitude d'entrée : </label><input id="waveAmp" type="number" step="0.1" min="0" max="100" value="{{block.audioNodeGain.gain.value}}"></div>
                 </div>
                 <h3>Sortie</h3>
                 <div layout vertical>
-                                <button class="linkBlock" on-click={{linkFreq}}>Lier la fréquence de sortie</button>
-                                <button class="linkBlock" on-click={{linkAmp}}>Lier l'ampltide de sortie</button>                   </div>
+                                <button class="linkBlock" on-click={{linkSignal}}>Lier le signal de sortie</button>                   </div>
             </div>
         </template>
         <template if="{{block.blockType == 'adsr'}}">
@@ -49,8 +48,8 @@
                 <div><label for="">Release : Timing</label><input type="number" step="any"></div>
                 <h3>Sortie</h3>
                 <div layout vertical>
-                                <button class="linkBlock" on-click={{linkFreq}}>Lier la fréquence de sortie</button>
-                                <button class="linkBlock" on-click={{linkAmp}}>Lier l'ampltide de sortie</button>                   </div>
+                                <button class="linkBlock" on-click={{linkSignal}}>Lier le signal de sortie</button>
+                   </div>
             </div>
         </template>
         <template if="{{block.blockType == 'midi'}}">
@@ -61,40 +60,38 @@
                 <div><label for="">Note</label><input type="number" step="any"></div>
                 <h3>Sortie</h3>
                 <div layout vertical>
-                                <button class="linkBlock" on-click={{linkFreq}}>Lier la fréquence de sortie</button>
-                                <button class="linkBlock" on-click={{linkAmp}}>Lier l'ampltide de sortie</button>                   </div>
+                                <button class="linkBlock" on-click={{linkSignal}}>Lier la fréquence de sortie</button>                   </div>
             </div>
         </template>
         <template if="{{block.blockType == 'delay'}}">
             <div id="delayBlock" class="blocEditor">
                 <h2>Bloc Délai</h2>
-                <div class="info">Ce bloc permet de délayer un signal</div>
+                <div class="info">Ce bloc permet d'ajouter un délai temporel à un signal</div>
                 <h3>Entrée</h3>
-                <div><label for="">Délai</label><input type="number" step="any"></div>
+                <div><label for="">Délai (sec) : </label><input type="number" step="0.1" min="0" max="10" value={{block.audioNode.delayTime.value}}></div>
                 <h3>Sortie</h3>
                 <div layout vertical>
-                                <button class="linkBlock" on-click={{linkFreq}}>Lier la fréquence de sortie</button>
-                                <button class="linkBlock" on-click={{linkAmp}}>Lier l'ampltide de sortie</button>                   </div>
+                                <button class="linkBlock" on-click={{linkSignal}}>Lier le signal de sortie</button>                   </div>
+            </div>
+        </template>
+        <template if="{{block.blockType == 'listener'}}">
+            <div id="delayBlock" class="blocEditor">
+                <h2>Bloc Listener</h2>
+                <div class="info">Ce bloc envoie les signaux d'entrée à la sortie son</div>
+                <h3>Entrée</h3>
+                <div><label for="">Volume : </label><input type="number" step="0.1" min="0" max="1" value={{block.audioNodeGain.gain.value}}></div>
             </div>
         </template>
     </template>
     <script>
         Polymer({
             block : null,
-            linkFreq : function()
+            linkSignal : function()
             {
                 var blockToLink = this.block;
                 window.currentTool.setBlock(null);
                 window.currentTool = Tools.linkTool;
-                window.currentTool.setType('freq');
-                window.currentTool.setBlock(blockToLink);
-            },
-            linkAmp : function()
-            {
-                var blockToLink = this.block;
-                window.currentTool.setBlock(null);
-                window.currentTool = Tools.linkTool;
-                window.currentTool.setType('amp');
+                window.currentTool.setType('signal');
                 window.currentTool.setBlock(blockToLink);
             }
         });

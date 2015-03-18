@@ -18,12 +18,20 @@ window.LinkTool = function(scene, camera)
     {
         if(this.hoverBlock != null)
         {
-            if(this.type == 'freq')
+            if(this.type == 'signal')
             {
-                this.hoverBlock.freqIn = this.block;
-                this.hoverBlock.freqInLink = this.spline;
-                this.block.freqOut = this.hoverBlock;
-                this.block.freqOutLink = this.spline;
+                if(this.hoverBlock.blockType == 'listener')
+                {
+                    this.block.audioNodeGain.connect(this.hoverBlock.audioNodeGain);
+                }
+                if(this.hoverBlock.blockType == 'wave')
+                {
+                    this.block.audioNodeGain.connect(this.hoverBlock.audioNode.frequency);
+                }
+                if(this.hoverBlock.blockType == 'delay')
+                {
+                    this.block.audioNodeGain.connect(this.hoverBlock.audioNode);
+                }
             }
             if(this.type == 'amp')
             {
