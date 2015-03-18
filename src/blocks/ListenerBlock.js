@@ -8,5 +8,8 @@ window.ListenerBlock = function()
     mesh.receiveShadow = true;
     mesh.transformable = true;
     mesh.blockType = "listener";
+    mesh.audioNode = audioCtx.destination;
+    mesh.audioNodeGain = audioCtx.createGain();
+    mesh.audioNodeGain.connect(mesh.audioNode);
     return mesh;
 };

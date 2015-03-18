@@ -8,5 +8,9 @@ window.DelayBlock = function()
     mesh.receiveShadow = true;
     mesh.transformable = true;
     mesh.blockType = "delay";
+    mesh.audioNode = audioCtx.createDelay(10.0);
+    mesh.audioNode.delayTime.value = 1;
+    mesh.audioNodeGain = audioCtx.createGain();
+    mesh.audioNode.connect(mesh.audioNodeGain);
     return mesh;
 };
