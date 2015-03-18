@@ -25,6 +25,13 @@
             <div id="waveBlock" class="blocEditor">
                 <h2>Bloc Oscillateur</h2>
                 <div class="info">Ce bloc permet de générer un signal sinusoïdale</div>
+                <h3>Type</h3>
+                <div>
+                    <button class="linkBlock" on-click={{setOscTypeToSine}}>Sine</button>
+                    <button class="linkBlock" on-click={{setOscTypeToSquare}}>Square</button>
+                    <button class="linkBlock" on-click={{setOscTypeToSawtooth}}>Sawtooth</button>
+                    <button class="linkBlock" on-click={{setOscTypeToTriangle}}>Triangle</button>
+                </div>
                 <h3>Entrée</h3>
                 <div><label>Fréquence d'entrée (Hz) : </label><input id="waveFreq" type="number" step="1" min="0" max="20000" value="{{block.audioNode.frequency.value}}"></div>
                 <div><label>Amplitude d'entrée : </label><input id="waveAmp" type="number" step="0.1" min="0" max="100" value="{{block.audioNodeGain.gain.value}}"></div>
@@ -106,6 +113,22 @@
             updateFreq : function()
             {
                 this.block.updateFrequencies();
+            },
+            setOscTypeToSine : function()
+            {
+                this.block.audioNode.type = "sine";
+            },
+            setOscTypeToSquare : function()
+            {
+                this.block.audioNode.type = "square";
+            },
+            setOscTypeToSawtooth : function()
+            {
+                this.block.audioNode.type = "sawtooth";
+            },
+            setOscTypeToTriangle : function()
+            {
+                this.block.audioNode.type = "triangle";
             }
         });
     </script>
