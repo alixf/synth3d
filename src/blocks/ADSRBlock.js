@@ -9,5 +9,6 @@ window.ADSRBlock = function()
     mesh.transformable = true;
     mesh.blockType = "adsr";
     mesh.linkedTo = [];
+    mesh.outType = "adsr";
     return mesh;
 };

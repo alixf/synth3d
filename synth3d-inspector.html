@@ -38,7 +38,7 @@
                 </div>
                 <h3>Sortie</h3>
                 <div layout vertical>
-                                <button class="linkBlock" on-click={{linkSignal}}>Lier le signal de sortie</button>                   </div>
+                                <button class="linkBlock" on-click={{link}}>Lier le signal de sortie</button>                   </div>
             </div>
         </template>
         <template if="{{block.blockType == 'adsr'}}">
@@ -55,7 +55,7 @@
                 <div><label for="">Release : Timing</label><input type="number" step="any"></div>
                 <h3>Sortie</h3>
                 <div layout vertical>
-                                <button class="linkBlock" on-click={{linkSignal}}>Lier le signal de sortie</button>
+                                <button class="linkBlock" on-click={{link}}>Lier le signal de sortie</button>
                    </div>
             </div>
         </template>
@@ -67,7 +67,7 @@
                 <div><label for="">Note (0-127) : </label><input type="number" step="1" min="0" max="127" value="{{block.note}}"><button class="linkBlock" on-click={{updateFreq}}>Set</button></div>
                 <h3>Sortie</h3>
                 <div layout vertical>
-                                <button class="linkBlock" on-click={{linkFreq}}>Lier la fréquence de sortie</button>                   </div>
+                                <button class="linkBlock" on-click={{link}}>Lier la fréquence de sortie</button>                   </div>
             </div>
         </template>
         <template if="{{block.blockType == 'delay'}}">
@@ -79,7 +79,7 @@
                 <div><label for="">Gain : </label><input type="number" step="0.1" min="0" max="1" value={{block.audioNodeGain.gain.value}}></div>
                 <h3>Sortie</h3>
                 <div layout vertical>
-                                <button class="linkBlock" on-click={{linkSignal}}>Lier le signal de sortie</button>                   </div>
+                                <button class="linkBlock" on-click={{link}}>Lier le signal de sortie</button>                   </div>
             </div>
         </template>
         <template if="{{block.blockType == 'sample'}}">
@@ -96,7 +96,7 @@
                 </div>
                 <h3>Sortie</h3>
                 <div layout vertical>
-                                <button class="linkBlock" on-click={{linkSignal}}>Lier le signal de sortie</button>                   </div>
+                                <button class="linkBlock" on-click={{link}}>Lier le signal de sortie</button>                   </div>
             </div>
         </template>
         <template if="{{block.blockType == 'listener'}}">
@@ -111,20 +111,12 @@
     <script>
         Polymer({
             block : null,
-            linkSignal : function()
+            link : function()
             {
                 var blockToLink = this.block;
                 window.currentTool.setBlock(null);
                 window.currentTool = Tools.linkTool;
-                window.currentTool.setType('signal');
-                window.currentTool.setBlock(blockToLink);
-            },
-            linkFreq : function()
-            {
-                var blockToLink = this.block;
-                window.currentTool.setBlock(null);
-                window.currentTool = Tools.linkTool;
-                window.currentTool.setType('freq');
+                window.currentTool.setType(blockToLink.outType);
                 window.currentTool.setBlock(blockToLink);
             },
             updateFreq : function()

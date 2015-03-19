@@ -14,6 +14,7 @@ window.SampleBlock = function()
     mesh.sons = [];
     mesh.linkedTo = [];
     mesh.isPlaying = true;
+    mesh.outType = "signal";
     var buff = null;
     mesh.loadSample = function(samplename)
     {

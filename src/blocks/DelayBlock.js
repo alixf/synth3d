@@ -13,5 +13,6 @@ window.DelayBlock = function()
     mesh.audioNodeGain = audioCtx.createGain();
     mesh.audioNode.connect(mesh.audioNodeGain);
     mesh.linkedTo = [];
+    mesh.outType = "signal";
     return mesh;
 };
