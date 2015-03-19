@@ -2,6 +2,7 @@ window.LinkTool = function(scene, camera)
 {
     this.block = null;
     this.type = 'freq';
+    this.linked = false;
     
     this.setBlock = function(block)
     {
@@ -16,6 +17,7 @@ window.LinkTool = function(scene, camera)
     
     this.onClick = function(event)
     {
+        this.linked = false;
         if(this.hoverBlock != null)
         {
             if(this.type == 'signal')
@@ -23,14 +25,18 @@ window.LinkTool = function(scene, camera)
                 if(this.hoverBlock.blockType == 'listener')
                 {
                     this.block.audioNodeGain.connect(this.hoverBlock.audioNodeGain);
+                    this.linked = true;
                 }
                 if(this.hoverBlock.blockType == 'wave')
                 {
                     this.block.audioNodeGain.connect(this.hoverBlock.audioNode.frequency);
+                    this.linked = true;
+                    
                 }
                 if(this.hoverBlock.blockType == 'delay')
                 {
                     this.block.audioNodeGain.connect(this.hoverBlock.audioNode);
+                    this.linked = true;
                 }
             }
             if(this.type == 'freq')
@@ -39,6 +45,7 @@ window.LinkTool = function(scene, camera)
                 {
                     this.block.sons.push(this.hoverBlock);
                     this.block.updateFrequencies();
+                    this.linked = true;
                 }
             }
             if(this.type == 'amp')
@@ -48,7 +55,13 @@ window.LinkTool = function(scene, camera)
                 this.block.ampOut = this.hoverBlock;
                 this.block.ampOutLink = this.spline;
             }
-            currentTool = Tools.defaultTool;
+            if(this.linked)
+            {
+                console.log("linked");
+                this.block.linkedTo.push([this.hoverBlock, this.spline, this.type]);
+                this.hoverBlock.linkedTo.push([this.block, this.spline, this.type]);
+                currentTool = Tools.defaultTool;
+            }
         }
     }
     
@@ -91,7 +104,6 @@ window.LinkTool = function(scene, camera)
         }
         else
             console.log("create");
-        
         var offset = new THREE.Vector3();//(type == 'freq') ? new THREE.Vector3(0, -0.1, 0) : new THREE.Vector3(0, 0.1, 0);
         var curve = new THREE.SplineCurve3([start/*+offset*/, end/*+offset*/]);
         var geometry = new THREE.Geometry();

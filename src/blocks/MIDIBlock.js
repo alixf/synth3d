@@ -10,6 +10,7 @@ window.MIDIBlock = function()
     mesh.blockType = "midi";
     mesh.note = 69;
     mesh.sons = [];
+    mesh.linkedTo = [];
     mesh.updateFrequencies = function()
     {
     	for (var son of this.sons)

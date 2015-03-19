@@ -11,5 +11,6 @@ window.ListenerBlock = function()
     mesh.audioNode = audioCtx.destination;
     mesh.audioNodeGain = audioCtx.createGain();
     mesh.audioNodeGain.connect(mesh.audioNode);
+    mesh.linkedTo = [];
     return mesh;
 };

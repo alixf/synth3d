@@ -29,14 +29,10 @@ window.TransformTool = function(scene, camera, inputTarget)
     
     this.update = function()
     {
-        if(this.block.freqIn != null)
-            Tools.linkTool.setLink(this.block.freqInLink, this.block.position, this.block.freqIn.position, 'freq');
-        if(this.block.freqOut != null)
-            Tools.linkTool.setLink(this.block.freqOutLink, this.block.freqOut.position, this.block.position, 'freq');
-        if(this.block.ampIn != null)
-            Tools.linkTool.setLink(this.block.ampInLink, this.block.position, this.block.ampIn.position, 'amp');
-        if(this.block.ampOut != null)
-            Tools.linkTool.setLink(this.block.ampOutLink, this.block.ampOut.position, this.block.position, 'amp');
+        for (var linkedBlock of this.block.linkedTo)
+        {
+            Tools.linkTool.setLink(linkedBlock[1], this.block.position, linkedBlock[0].position, linkedBlock[2]);
+        }
     }
     
     this.setBlock = function(block)
