@@ -36,8 +36,35 @@ window.TransformTool = function(scene, camera, inputTarget)
     
     this.update = function()
     {
+        if(this.block.xFactor)
+        {
+            this.block.xFactor.value += (this.block.position.x - this.block.oldX) * this.block.factor;
+            this.block.oldX = this.block.position.x;
+        }
+        if(this.block.yFactor)
+        {
+            this.block.yFactor.value += (this.block.position.y - this.block.oldY) * this.block.factor;
+            this.block.oldY = this.block.position.y;
+        }
+        if(this.block.zFactor)
+        {
+            this.block.zFactor.value += (this.block.position.z - this.block.oldZ) * this.block.factor;
+            this.block.oldZ = this.block.position.z;
+        }
+        if(this.block.blockType == "midi")
+        {
+            this.block.note.round = Math.round(this.block.note.value);
+            this.block.updateFrequencies();
+        }
         for (var linkedBlock of this.block.linkedTo)
         {
+            for (var linkedBlock2 of linkedBlock[0].linkedTo)
+            {
+                if(linkedBlock2[0] == this.block)
+                {
+                    linkedBlock2[1] = Tools.linkTool.setLink(linkedBlock2[1], linkedBlock[0].position, linkedBlock2[0].position, linkedBlock2[2]);
+                }
+            }
             linkedBlock[1] = Tools.linkTool.setLink(linkedBlock[1], this.block.position, linkedBlock[0].position, linkedBlock[2]);
         }
     }

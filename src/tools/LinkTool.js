@@ -104,7 +104,6 @@ window.LinkTool = function(scene, camera)
         if(link)
         {
             scene.remove(link);
-            console.log("remove");
         }
         else
             console.log("create");

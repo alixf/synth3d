@@ -14,5 +14,12 @@ window.WaveBlock = function()
     mesh.audioNode.connect(mesh.audioNodeGain);
     mesh.linkedTo = [];
     mesh.outType = "signal";
+    mesh.xFactor = null;
+    mesh.yFactor = null;
+    mesh.zFactor = null;
+    mesh.factor = 1;
+    mesh.oldX = 0;
+    mesh.oldY = 0.5;
+    mesh.oldZ = 0;
     return mesh;
 };

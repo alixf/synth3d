@@ -12,5 +12,9 @@ window.ListenerBlock = function()
     mesh.audioNodeGain = audioCtx.createGain();
     mesh.audioNodeGain.connect(mesh.audioNode);
     mesh.linkedTo = [];
+    mesh.xFactor = null;
+    mesh.yFactor = null;
+    mesh.zFactor = null;
+    mesh.factor = 1;
     return mesh;
 };

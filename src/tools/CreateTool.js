@@ -11,7 +11,7 @@ window.CreateTool = function(scene, camera)
         }
     }
     document.querySelector("#waveBlock").addEventListener("click", enableCreateTool(WaveBlock));
-    document.querySelector("#adsrBlock").addEventListener("click", enableCreateTool(ADSRBlock));
+    //document.querySelector("#adsrBlock").addEventListener("click", enableCreateTool(ADSRBlock));
     document.querySelector("#midiBlock").addEventListener("click", enableCreateTool(MIDIBlock));
     document.querySelector("#delayBlock").addEventListener("click", enableCreateTool(DelayBlock));
     document.querySelector("#sampleBlock").addEventListener("click", enableCreateTool(SampleBlock));
@@ -57,6 +57,9 @@ window.CreateTool = function(scene, camera)
         {
             this.block.material.opacity = 1.0;
             this.block.material.transparent = false;
+            this.block.oldX = this.block.position.x + 0;
+            this.block.oldY = this.block.position.y + 0;
+            this.block.oldZ = this.block.position.z + 0;
         }
         else
         {
