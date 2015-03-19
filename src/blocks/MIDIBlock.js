@@ -9,13 +9,13 @@ window.MIDIBlock = function()
     mesh.transformable = true;
     mesh.blockType = "midi";
     mesh.note = 69;
-    mesh.sons = [];
     mesh.linkedTo = [];
+    mesh.outType = "freq";
     mesh.updateFrequencies = function()
     {
-    	for (var son of this.sons)
+    	for (var son of this.linkedTo)
     	{
-    		son.audioNode.frequency.value = Math.pow(2,(this.note-69)/12)*440; //Note to frequency conversion
+    		son[0].audioNode.frequency.value = Math.pow(2,(this.note-69)/12)*440; //Note to frequency conversion
     	}
     	return this.note;
     };
