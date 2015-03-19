@@ -7,6 +7,7 @@ window.Textures =
     am : THREE.ImageUtils.loadTexture('textures/blocks_09.png'),
     fm : THREE.ImageUtils.loadTexture('textures/blocks_10.png'),
     delay : THREE.ImageUtils.loadTexture('textures/blocks_11.png'),
+    sample : THREE.ImageUtils.loadTexture('textures/blocks_12.png'),
 };
 
 window.onload = function()

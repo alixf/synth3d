@@ -82,6 +82,23 @@
                                 <button class="linkBlock" on-click={{linkSignal}}>Lier le signal de sortie</button>                   </div>
             </div>
         </template>
+        <template if="{{block.blockType == 'sample'}}">
+            <div id="sampleBlock" class="blocEditor">
+                <h2>Bloc Sample</h2>
+                <div class="info">Ce bloc permet de charger et jouer un sample</div>
+                <h3>Type</h3>
+                <div>
+                    <button class="linkBlock" on-click={{loadSampleKickDrum}}>Kick Drum</button>
+                    <button class="linkBlock" on-click={{playCurrentSample}}>Play</button>
+                </div>
+                <h3>Entrée</h3>
+                <div><label>Volume : </label><input id="waveAmp" type="number" step="0.1" min="0" max="1" value="{{block.audioNodeGain.gain.value}}"></div>
+                </div>
+                <h3>Sortie</h3>
+                <div layout vertical>
+                                <button class="linkBlock" on-click={{linkSignal}}>Lier le signal de sortie</button>                   </div>
+            </div>
+        </template>
         <template if="{{block.blockType == 'listener'}}">
             <div id="delayBlock" class="blocEditor">
                 <h2>Bloc Listener</h2>
@@ -129,6 +146,14 @@
             setOscTypeToTriangle : function()
             {
                 this.block.audioNode.type = "triangle";
+            },
+            loadSampleKickDrum : function()
+            {
+                this.block.loadSample("samples/mv-yetanothersupermetroidmedley.wav");
+            },
+            playCurrentSample : function()
+            {
+                this.block.playSample();
             }
         });
     </script>
