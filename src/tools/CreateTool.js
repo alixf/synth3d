@@ -18,12 +18,17 @@ window.CreateTool = function(scene, camera)
     
     this.onClick = function(event)
     {
-        if(this.block.blockType == "wave")
+        if(event.which == 3)
         {
-            this.block.audioNode.start(0);
+            scene.remove(this.block);
+            window.currentTool = Tools.defaultTool;
         }
-        window.currentTool = Tools.transformTool;
-        window.currentTool.setBlock(this.block);
+        else
+        {
+            window.currentTool = Tools.linkTool;      
+            window.currentTool.setType(this.block.outType);
+            window.currentTool.setBlock(this.block);
+        }
         this.setBlock(null);
     }
     

@@ -16,8 +16,15 @@ window.TransformTool = function(scene, camera, inputTarget)
         {
             if(intersects[i].object.transformable)
             {
-                found = true;
-                this.setBlock(intersects[i].object);
+                if(event.which == 3)
+                {
+                    Tools.defaultTool.removeBlock(intersects[i].object);
+                }
+                else
+                {
+                    found = true;
+                    this.setBlock(intersects[i].object);
+                }
             }
         }
         if(!found)
@@ -31,7 +38,7 @@ window.TransformTool = function(scene, camera, inputTarget)
     {
         for (var linkedBlock of this.block.linkedTo)
         {
-            Tools.linkTool.setLink(linkedBlock[1], this.block.position, linkedBlock[0].position, linkedBlock[2]);
+            linkedBlock[1] = Tools.linkTool.setLink(linkedBlock[1], this.block.position, linkedBlock[0].position, linkedBlock[2]);
         }
     }
     

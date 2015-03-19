@@ -17,6 +17,12 @@ window.LinkTool = function(scene, camera)
     
     this.onClick = function(event)
     {
+        if(event.which == 3)
+        {
+            scene.remove(this.spline);
+            currentTool = Tools.defaultTool;
+            return false;
+        }
         this.linked = false;
         if(this.hoverBlock != null)
         {
@@ -43,8 +49,6 @@ window.LinkTool = function(scene, camera)
             {
                 if(this.hoverBlock.blockType == 'wave')
                 {
-                    this.block.sons.push(this.hoverBlock);
-                    this.block.updateFrequencies();
                     this.linked = true;
                 }
             }
@@ -70,7 +74,6 @@ window.LinkTool = function(scene, camera)
         var raycaster = new THREE.Raycaster();
         raycaster.setFromCamera(mouse, camera);
         var intersects = raycaster.intersectObjects(scene.children);
-
         var end = new THREE.Vector3();
         var found = false;
         for (var i = 0; i < intersects.length; i++)
@@ -98,9 +101,10 @@ window.LinkTool = function(scene, camera)
     
     this.setLink = function(link, start, end, type)
     {
-        if(link != null)
+        if(link)
         {
             scene.remove(link);
+            console.log("remove");
         }
         else
             console.log("create");

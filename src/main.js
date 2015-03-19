@@ -74,11 +74,10 @@ window.onload = function()
     function onMouseClick(event)
     {
         event.preventDefault();
-        
         if(currentTool != null && currentTool.onClick != null)
             currentTool.onClick(event);
     }
-    container.addEventListener('click', onMouseClick);
+    container.addEventListener('mouseup', onMouseClick);
     
     // Event : Resize
     function onResize()
