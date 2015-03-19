@@ -38,6 +38,10 @@ window.SampleBlock = function()
             this.audioNode.buffer = buff;
             this.audioNode.start(0);
         }
+        else
+        {
+            console.log("No sound loaded, can't play.")
+        }
     };
 
     return mesh;
