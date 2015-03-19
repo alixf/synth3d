@@ -10,7 +10,9 @@ window.WaveBlock = function()
     mesh.transformable = true;
     mesh.blockType = "wave";
     mesh.audioNodeGain = audioCtx.createGain();
+    mesh.audioNode.start(0);
     mesh.audioNode.connect(mesh.audioNodeGain);
     mesh.linkedTo = [];
+    mesh.outType = "signal";
     return mesh;
 };
