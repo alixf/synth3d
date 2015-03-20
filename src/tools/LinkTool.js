@@ -61,7 +61,6 @@ window.LinkTool = function(scene, camera)
             }
             if(this.linked)
             {
-                console.log("linked");
                 this.block.linkedTo.push([this.hoverBlock, this.spline, this.type]);
                 this.hoverBlock.linkedTo.push([this.block, this.spline, this.type]);
                 currentTool = Tools.defaultTool;
@@ -105,8 +104,6 @@ window.LinkTool = function(scene, camera)
         {
             scene.remove(link);
         }
-        else
-            console.log("create");
         var offset = new THREE.Vector3();//(type == 'freq') ? new THREE.Vector3(0, -0.1, 0) : new THREE.Vector3(0, 0.1, 0);
         var curve = new THREE.SplineCurve3([start/*+offset*/, end/*+offset*/]);
         var geometry = new THREE.Geometry();
