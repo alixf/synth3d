@@ -19,7 +19,7 @@ window.DefaultTool = function(scene, camera)
             if(intersects[i].object.transformable)
             {
                 var block = intersects[i].object;
-                if(event.which == 3 && block.blockType != "listener")
+                if(event.which == 3 && block.blockType != "speaker")
                 {
                     this.removeBlock(block);
                 }

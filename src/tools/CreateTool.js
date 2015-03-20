@@ -10,7 +10,7 @@ window.CreateTool = function(scene, camera)
             window.currentTool.setBlock(new Block());
         }
     }
-    document.querySelector("#waveBlock").addEventListener("click", enableCreateTool(WaveBlock));
+    document.querySelector("#oscillatorBlock").addEventListener("click", enableCreateTool(OscillatorBlock));
     //document.querySelector("#adsrBlock").addEventListener("click", enableCreateTool(ADSRBlock));
     document.querySelector("#midiBlock").addEventListener("click", enableCreateTool(MIDIBlock));
     document.querySelector("#delayBlock").addEventListener("click", enableCreateTool(DelayBlock));

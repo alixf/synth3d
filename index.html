@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
         <script type="text/javascript" src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
         <script type="text/javascript" src='src/libs/three.js'></script>
@@ -8,8 +9,8 @@
         <script type="text/javascript" src='src/controls/TransformControls.js'></script>
         <script type="text/javascript" src='src/LightSetup.js'></script>
         <script type="text/javascript" src='src/Ground.js'></script>
-        <script type="text/javascript" src='src/blocks/ListenerBlock.js'></script>
-        <script type="text/javascript" src='src/blocks/WaveBlock.js'></script>
+        <script type="text/javascript" src='src/blocks/SpeakerBlock.js'></script>
+        <script type="text/javascript" src='src/blocks/OscillatorBlock.js'></script>
         <script type="text/javascript" src='src/blocks/ADSRBlock.js'></script>
         <script type="text/javascript" src='src/blocks/MIDIBlock.js'></script>
         <script type="text/javascript" src='src/blocks/DelayBlock.js'></script>
@@ -28,11 +29,14 @@
         <aside id="blocks">
             <h1>Synth3D</h1>
             <hr>
-            <div class="tool" id="waveBlock"><img src="textures/blocks_05.png" alt=""><div>Wave Block</div></div>
-            <!-- <div class="tool" id="adsrBlock"><img src="textures/blocks_06.png" alt=""><div>ADSR Block</div></div> -->
-            <div class="tool" id="midiBlock"><img src="textures/blocks_07.png" alt=""><div>MIDI Block</div></div>
+            <h2>Générateurs</h2>
+            <div class="tool" id="oscillatorBlock"><img src="textures/blocks_05.png" alt=""><div>Oscillateur</div></div>
+            <div class="tool" id="sampleBlock"><img src="textures/blocks_12.png" alt=""><div>Sample</div></div>
+            <h2>Effets</h2>
             <div class="tool" id="delayBlock"><img src="textures/blocks_11.png" alt=""><div>Delay</div></div>
-            <div class="tool" id="sampleBlock"><img src="textures/blocks_12.png" alt=""><div>Sample Block</div></div>
+            <h2>Contrôleurs</h2>
+            <!-- <div class="tool" id="adsrBlock"><img src="textures/blocks_06.png" alt=""><div>ADSR Block</div></div> -->
+            <div class="tool" id="midiBlock"><img src="textures/blocks_07.png" alt=""><div>MIDI</div></div>
         </aside>
         <div id="container"></div>
         <aside id="inspector">

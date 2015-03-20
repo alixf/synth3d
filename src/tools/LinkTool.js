@@ -28,12 +28,12 @@ window.LinkTool = function(scene, camera)
         {
             if(this.type == 'signal')
             {
-                if(this.hoverBlock.blockType == 'listener')
+                if(this.hoverBlock.blockType == 'speaker')
                 {
                     this.block.audioNodeGain.connect(this.hoverBlock.audioNodeGain);
                     this.linked = true;
                 }
-                if(this.hoverBlock.blockType == 'wave')
+                if(this.hoverBlock.blockType == 'osc')
                 {
                     this.block.audioNodeGain.connect(this.hoverBlock.audioNode.frequency);
                     this.linked = true;
@@ -47,7 +47,7 @@ window.LinkTool = function(scene, camera)
             }
             if(this.type == 'freq')
             {
-                if(this.hoverBlock.blockType == 'wave')
+                if(this.hoverBlock.blockType == 'osc')
                 {
                     this.linked = true;
                 }

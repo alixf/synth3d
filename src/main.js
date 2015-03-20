@@ -1,7 +1,7 @@
 window.Textures =
 {
-    listener : THREE.ImageUtils.loadTexture('textures/blocks_01.png'),
-    wave : THREE.ImageUtils.loadTexture('textures/blocks_05.png'),
+    speaker : THREE.ImageUtils.loadTexture('textures/blocks_01.png'),
+    osc : THREE.ImageUtils.loadTexture('textures/blocks_05.png'),
     adsr : THREE.ImageUtils.loadTexture('textures/blocks_06.png'),
     midi : THREE.ImageUtils.loadTexture('textures/blocks_07.png'),
     am : THREE.ImageUtils.loadTexture('textures/blocks_09.png'),
@@ -42,8 +42,8 @@ window.onload = function()
     // Ground (grid and ground plane)
     scene.add(new Ground());
 
-    // Default Listener Block
-    scene.add(new ListenerBlock());
+    // Default Speaker Block
+    scene.add(new SpeakerBlock());
 
     // Tools
     window.Tools =

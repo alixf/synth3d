@@ -16,7 +16,7 @@ window.TransformTool = function(scene, camera, inputTarget)
         {
             if(intersects[i].object.transformable)
             {
-                if(event.which == 3)
+                if(event.which == 3  && intersects[i].object.blockType != "speaker")
                 {
                     Tools.defaultTool.removeBlock(intersects[i].object);
                 }

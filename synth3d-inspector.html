@@ -21,21 +21,22 @@
             <div class="info">Sélectionnez un bloc pour pouvoir l'éditer</div>
         </template>
         
-        <template if="{{block.blockType == 'wave'}}">
-            <div id="waveBlock" class="blocEditor">
+        <template if="{{block.blockType == 'osc'}}">
+            <div id="oscBlock" class="blocEditor">
                 <h2>Bloc Oscillateur</h2>
-                <div class="info">Ce bloc permet de générer un signal sinusoïdale</div>
+                <div class="info">Ce bloc permet de générer un signal sinusoïdal</div>
+                <hr>
                 <h3>Type</h3>
                 <div>
-                    <button class="waveType" on-click={{setOscTypeToSine}}>Sine</button>
-                    <button class="waveType" on-click={{setOscTypeToSquare}}>Square</button>
-                    <button class="waveType" on-click={{setOscTypeToSawtooth}}>Sawtooth</button>
-                    <button class="waveType" on-click={{setOscTypeToTriangle}}>Triangle</button>
+                    <button class="oscType" on-click={{setOscTypeToSine}}>Sine</button>
+                    <button class="oscType" on-click={{setOscTypeToSquare}}>Square</button>
+                    <button class="oscType" on-click={{setOscTypeToSawtooth}}>Sawtooth</button>
+                    <button class="oscType" on-click={{setOscTypeToTriangle}}>Triangle</button>
                 </div>
                 <h3>Entrée</h3>
                 <div><label>Facteur 3D : </label><input id="factor" type="number" step="0.1" min="0" max="200" value={{block.factor}}></div>
                 <h4>Fréquence</h4>
-                <div><label>Valeur (Hz) : </label><input id="waveFreq" type="number" step="1" min="0" max="20000" value={{block.audioNode.frequency.value}}></div>
+                <div><label>Valeur (Hz) : </label><input id="oscFreq" type="number" step="1" min="0" max="20000" value={{block.audioNode.frequency.value}}></div>
                 <div>
                 <label>Lier en 3D : </label>
                 <button class="linkFreq" on-click={{setOscFreqToNone}}>None</button>
@@ -44,7 +45,7 @@
                 <button class="linkFreq" on-click={{setOscFreqToZ}}>Z</button>
                 </div>
                 <h4>Amplitude</h4>
-                <div><label>Valeur : </label><input id="waveAmp" type="number" step="0.1" min="0" max="100" value={{block.audioNodeGain.gain.value}}></div>
+                <div><label>Valeur : </label><input id="gain" type="number" step="0.1" min="0" max="100" value={{block.audioNodeGain.gain.value}}></div>
                 <div>
                 <label>Lier en 3D : </label>
                 <button class="linkGain" on-click={{setGainToNone}}>None</button>
@@ -61,6 +62,7 @@
             <div id="adsrBlock" class="blocEditor">
                 <h2>Bloc ADSR</h2>
                 <div class="info">Ce bloc permet d'appliquer une enveloppe ADSR à un signal</div>
+                <hr>
                 <h3>Entrée</h3>
                 <div><label for="">Attack : Amplitude</label><input type="number" step="any"></div>
                 <div><label for="">Attack : Timing</label><input type="number" step="any"></div>
@@ -78,7 +80,8 @@
         <template if="{{block.blockType == 'midi'}}">
             <div id="midiBlock" class="blocEditor">
                 <h2>Bloc MIDI</h2>
-                <div class="info">Ce bloc permet de générer un signal MIDI</div>
+                <div class="info">Ce bloc permet de contrôler une hauteur MIDI</div>
+                <hr>
                 <h3>Entrée</h3>
                 <div><label>Facteur 3D : </label><input id="factor" type="number" step="0.1" min="0" max="200" value={{block.factor}}></div>
                 <h4>Note</h4>
@@ -98,7 +101,8 @@
         <template if="{{block.blockType == 'delay'}}">
             <div id="delayBlock" class="blocEditor">
                 <h2>Bloc Délai</h2>
-                <div class="info">Ce bloc permet d'ajouter un délai temporel à un signal</div>
+                <div class="info">Ce bloc permet d'insérer un délai à un signal</div>
+                <hr>
                 <h3>Entrée</h3>
                 <div><label>Facteur 3D : </label><input id="factor" type="number" step="0.1" min="0" max="200" value={{block.factor}}></div>
                 <h4>Délai</h4>
@@ -128,6 +132,7 @@
             <div id="sampleBlock" class="blocEditor">
                 <h2>Bloc Sample</h2>
                 <div class="info">Ce bloc permet de charger et jouer un sample</div>
+                <hr>
                 <h3>Type</h3>
                 <div>
                     <button class="linkBlock" on-click={{loadSampleKickDrum}}>Load Kick Drum</button>
@@ -137,7 +142,7 @@
                 <h3>Entrée</h3>
                 <div><label>Facteur 3D : </label><input id="factor" type="number" step="0.1" min="0" max="200" value={{block.factor}}></div>
                 <h4>Gain</h4>
-                <div><label>Valeur : </label><input id="waveAmp" type="number" step="0.1" min="0" max="1" value={{block.audioNodeGain.gain.value}}></div>
+                <div><label>Valeur : </label><input id="gain" type="number" step="0.1" min="0" max="1" value={{block.audioNodeGain.gain.value}}></div>
                 <div>
                 <label>Lier en 3D : </label>
                 <button class="linkGain" on-click={{setGainToNone}}>None</button>
@@ -150,10 +155,11 @@
                                 <button class="linkBlock" on-click={{link}}>Lier le signal de sortie</button>                   </div>
             </div>
         </template>
-        <template if="{{block.blockType == 'listener'}}">
+        <template if="{{block.blockType == 'speaker'}}">
             <div id="delayBlock" class="blocEditor">
-                <h2>Bloc Listener</h2>
-                <div class="info">Ce bloc envoie les signaux d'entrée à la sortie son</div>
+                <h2>Bloc Speaker</h2>
+                <div class="info">Ce bloc envoie les signaux à la sortie son</div>
+                <hr>
                 <h3>Entrée</h3>
                 <div><label for="">Volume : </label><input type="number" step="0.1" min="0" max="1" value={{block.audioNodeGain.gain.value}}></div>
                 <button class="linkGain" on-click={{setGainToNone}}>None</button>
