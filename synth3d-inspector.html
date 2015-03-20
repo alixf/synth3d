@@ -82,7 +82,7 @@
                 <h3>Entrée</h3>
                 <div><label>Facteur 3D : </label><input id="factor" type="number" step="0.1" min="0" max="200" value={{block.factor}}></div>
                 <h4>Note</h4>
-                <div><label for="">Valeur (0-127) : </label><input type="number" step="1" min="0" max="127" value={{block.note.round}}><button class="linkBlock" on-click={{updateFreq}}>Set</button></div>
+                <div><label for="">Valeur (0-127) : </label><input type="number" step="1" min="0" max="127" value={{block.note.val}}></div>
                 <div>
                 <label>Lier en 3D : </label>
                 <button class="linkNote" on-click={{setNoteToNone}}>None</button>

@@ -8,7 +8,7 @@ window.MIDIBlock = function()
     mesh.receiveShadow = true;
     mesh.transformable = true;
     mesh.blockType = "midi";
-    mesh.note = {value:69, round:69};
+    mesh.note = {value:69, round:69, val:69};
     mesh.linkedTo = [];
     mesh.outType = "freq";
     mesh.xFactor = null;
@@ -17,6 +17,7 @@ window.MIDIBlock = function()
     mesh.factor = 1;
     mesh.updateFrequencies = function()
     {
+    	this.note.round = Math.round(this.note.value);
     	for (var son of this.linkedTo)
     	{
     		son[0].audioNode.frequency.value = Math.pow(2,(this.note.round-69)/12)*440; //Note to frequency conversion
