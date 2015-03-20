@@ -48,6 +48,5 @@ window.SampleBlock = function()
             console.log("No sound loaded, can't play.")
         }
     };
-
     return mesh;
 };

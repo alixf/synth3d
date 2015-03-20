@@ -131,6 +131,7 @@
                 <h3>Type</h3>
                 <div>
                     <button class="linkBlock" on-click={{loadSampleKickDrum}}>Load Kick Drum</button>
+                    <button class="linkBlock" on-click={{loadSampleSnare}}>Load Snare</button>
                     <button class="linkBlock" on-click={{playCurrentSample}}>Play</button>
                 </div>
                 <h3>Entrée</h3>
@@ -328,6 +329,10 @@
             loadSampleKickDrum : function()
             {
                 this.block.loadSample("samples/kickdrum.wav");
+            },
+            loadSampleSnare : function()
+            {
+                this.block.loadSample("samples/snare.wav");
             },
             playCurrentSample : function()
             {
