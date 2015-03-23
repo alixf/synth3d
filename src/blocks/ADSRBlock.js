@@ -55,6 +55,7 @@ window.ADSRBlock = function()
                 var now = this.audioNodeGain.context.currentTime;
                 this.audioNodeGain.gain.cancelScheduledValues(parseFloat(now));
                 //Release
+                this.audioNodeGain.gain.setValueAtTime(this.gain.value, parseFloat(now));
                 var release = parseFloat(now) + parseFloat(this.release.value) + this.minimalOffset;
                 this.audioNodeGain.gain.linearRampToValueAtTime(0, release);
             }
