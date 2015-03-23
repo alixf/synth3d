@@ -39,7 +39,7 @@ window.LinkTool = function(scene, camera)
                     this.linked = true;
                     
                 }
-                if(this.hoverBlock.blockType == 'delay')
+                if(this.hoverBlock.blockType == 'delay' || this.hoverBlock.blockType == 'filter')
                 {
                     this.block.audioNodeGain.connect(this.hoverBlock.audioNode);
                     this.linked = true;

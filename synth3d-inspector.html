@@ -34,7 +34,7 @@
                     <button class="oscType" on-click={{setOscTypeToTriangle}}>Triangle</button>
                 </div>
                 <h3>Entrée</h3>
-                <div><label>Facteur 3D : </label><input id="factor" type="number" step="0.1" min="0" max="200" value={{block.factor}}></div>
+                <div><label>Facteur 3D : </label><input id="factor" type="number" step="1" min="0" max="1000" value={{block.factor}}></div>
                 <h4>Fréquence</h4>
                 <div><label>Valeur (Hz) : </label><input id="oscFreq" type="number" step="1" min="0" max="20000" value={{block.audioNode.frequency.value}}></div>
                 <div>
@@ -83,7 +83,7 @@
                 <div class="info">Ce bloc permet de contrôler une hauteur MIDI</div>
                 <hr>
                 <h3>Entrée</h3>
-                <div><label>Facteur 3D : </label><input id="factor" type="number" step="0.1" min="0" max="200" value={{block.factor}}></div>
+                <div><label>Facteur 3D : </label><input id="factor" type="number" step="1" min="0" max="1000" value={{block.factor}}></div>
                 <h4>Note</h4>
                 <div><label for="">Valeur (0-127) : </label><input type="number" step="1" min="0" max="127" value={{block.note.val}}></div>
                 <div>
@@ -104,7 +104,7 @@
                 <div class="info">Ce bloc permet d'insérer un délai à un signal</div>
                 <hr>
                 <h3>Entrée</h3>
-                <div><label>Facteur 3D : </label><input id="factor" type="number" step="0.1" min="0" max="200" value={{block.factor}}></div>
+                <div><label>Facteur 3D : </label><input id="factor" type="number" step="1" min="0" max="1000" value={{block.factor}}></div>
                 <h4>Délai</h4>
                 <div><label for="">Valeur (sec) : </label><input type="number" step="0.1" min="0" max="10" value={{block.audioNode.delayTime.value}}></div>
                 <div>
@@ -113,6 +113,51 @@
                 <button class="linkDelay" on-click={{setDelayToX}}>X</button>
                 <button class="linkDelay" on-click={{setDelayToY}}>Y</button>
                 <button class="linkDelay" on-click={{setDelayToZ}}>Z</button>
+                </div>
+                <h4>Gain</h4>
+                <div><label for="">Valeur : </label><input type="number" step="0.1" min="0" max="1" value={{block.audioNodeGain.gain.value}}></div>
+                <div>
+                <label>Lier en 3D : </label>
+                <button class="linkGain" on-click={{setGainToNone}}>None</button>
+                <button class="linkGain" on-click={{setGainToX}}>X</button>
+                <button class="linkGain" on-click={{setGainToY}}>Y</button>
+                <button class="linkGain" on-click={{setGainToZ}}>Z</button>
+                </div>
+                <h3>Sortie</h3>
+                <div layout vertical>
+                                <button class="linkBlock" on-click={{link}}>Lier le signal de sortie</button>                   </div>
+            </div>
+        </template>
+        <template if="{{block.blockType == 'filter'}}">
+            <div id="filterBlock" class="blocEditor">
+                <h2>Bloc Filtre</h2>
+                <div class="info">Ce bloc permet d'insérer un filtre au signal entrant</div>
+                <hr>
+                <h3>Type</h3>
+                <div>
+                    <button class="filterType" on-click={{setFilterTypeToLowpass}}>Lowpass</button>
+                    <button class="filterType" on-click={{setFilterTypeToHighpass}}>Highpass</button>
+                    <button class="filterType" on-click={{setFilterTypeToBandpass}}>Bandpass</button>
+                </div>
+                <h3>Entrée</h3>
+                <div><label>Facteur 3D : </label><input id="factor" type="number" step="1" min="0" max="1000" value={{block.factor}}></div>
+                <h4>Fréquence</h4>
+                <div><label for="">Valeur (Hz) : </label><input type="number" step="1" min="0" max="20000" value={{block.audioNode.frequency.value}}></div>
+                <div>
+                <label>Lier en 3D : </label>
+                <button class="linkFreq" on-click={{setOscFreqToNone}}>None</button>
+                <button class="linkFreq" on-click={{setOscFreqToX}}>X</button>
+                <button class="linkFreq" on-click={{setOscFreqToY}}>Y</button>
+                <button class="linkFreq" on-click={{setOscFreqToZ}}>Z</button>
+                </div>
+                <h4>Qualité</h4>
+                <div><label for="">Valeur : </label><input type="number" step="0.5" min="0" max="25" value={{block.audioNode.Q.value}}></div>
+                <div>
+                <label>Lier en 3D : </label>
+                <button class="linkFreq" on-click={{setQToNone}}>None</button>
+                <button class="linkFreq" on-click={{setQToX}}>X</button>
+                <button class="linkFreq" on-click={{setQToY}}>Y</button>
+                <button class="linkFreq" on-click={{setQToZ}}>Z</button>
                 </div>
                 <h4>Gain</h4>
                 <div><label for="">Valeur : </label><input type="number" step="0.1" min="0" max="1" value={{block.audioNodeGain.gain.value}}></div>
@@ -140,7 +185,7 @@
                     <button class="linkBlock" on-click={{playCurrentSample}}>Play</button>
                 </div>
                 <h3>Entrée</h3>
-                <div><label>Facteur 3D : </label><input id="factor" type="number" step="0.1" min="0" max="200" value={{block.factor}}></div>
+                <div><label>Facteur 3D : </label><input id="factor" type="number" step="1" min="0" max="1000" value={{block.factor}}></div>
                 <h4>Gain</h4>
                 <div><label>Valeur : </label><input id="gain" type="number" step="0.1" min="0" max="1" value={{block.audioNodeGain.gain.value}}></div>
                 <div>
@@ -161,7 +206,7 @@
                 <div class="info">Ce bloc envoie les signaux à la sortie son</div>
                 <hr>
                 <h3>Entrée</h3>
-                <div><label>Facteur 3D : </label><input id="factor" type="number" step="0.1" min="0" max="200" value={{block.factor}}></div>
+                <div><label>Facteur 3D : </label><input id="factor" type="number" step="1" min="0" max="1000" value={{block.factor}}></div>
                 <h4>Volume</h4>
                 <div><label for="">Valeur : </label><input type="number" step="0.1" min="0" max="1" value={{block.audioNodeGain.gain.value}}></div>
                 <div>
@@ -204,6 +249,18 @@
             setOscTypeToTriangle : function()
             {
                 this.block.audioNode.type = "triangle";
+            },
+            setFilterTypeToLowpass : function()
+            {
+                this.block.audioNode.type = "lowpass";
+            },
+            setFilterTypeToHighpass : function()
+            {
+                this.block.audioNode.type = "highpass";
+            },
+            setFilterTypeToBandpass : function()
+            {
+                this.block.audioNode.type = "bandpass";
             },
             setOscFreqToNone : function()
             {
@@ -336,6 +393,39 @@
                 if(this.block.yFactor == this.block.note)
                     this.block.yFactor = null;
                 this.block.zFactor = this.block.note;
+            },
+            setQToNone : function()
+            {
+                if(this.block.xFactor == this.block.audioNode.Q)
+                    this.block.xFactor = null;
+                if(this.block.yFactor == this.block.audioNode.Q)
+                    this.block.yFactor = null;
+                if(this.block.zFactor == this.block.audioNode.Q)
+                    this.block.zFactor = null;
+            },
+            setQToX : function()
+            {
+                this.block.xFactor = this.block.audioNode.Q;
+                if(this.block.yFactor == this.block.audioNode.Q)
+                    this.block.yFactor = null;
+                if(this.block.zFactor == this.block.audioNode.Q)
+                    this.block.zFactor = null;
+            },
+            setQToY : function()
+            {
+                if(this.block.xFactor == this.block.audioNode.Q)
+                    this.block.xFactor = null;
+                this.block.yFactor = this.block.audioNode.Q;
+                if(this.block.zFactor == this.block.audioNode.Q)
+                    this.block.zFactor = null;
+            },
+            setQToZ : function()
+            {
+                if(this.block.xFactor == this.block.audioNode.Q)
+                    this.block.xFactor = null;
+                if(this.block.yFactor == this.block.audioNode.Q)
+                    this.block.yFactor = null;
+                this.block.zFactor = this.block.audioNode.Q;
             },
             loadSampleKickDrum : function()
             {

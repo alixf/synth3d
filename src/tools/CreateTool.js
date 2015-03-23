@@ -14,6 +14,7 @@ window.CreateTool = function(scene, camera)
     //document.querySelector("#adsrBlock").addEventListener("click", enableCreateTool(ADSRBlock));
     document.querySelector("#midiBlock").addEventListener("click", enableCreateTool(MIDIBlock));
     document.querySelector("#delayBlock").addEventListener("click", enableCreateTool(DelayBlock));
+    document.querySelector("#filterBlock").addEventListener("click", enableCreateTool(FilterBlock));
     document.querySelector("#sampleBlock").addEventListener("click", enableCreateTool(SampleBlock));
     
     this.onClick = function(event)
