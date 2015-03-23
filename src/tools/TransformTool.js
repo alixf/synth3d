@@ -20,6 +20,10 @@ window.TransformTool = function(scene, camera, inputTarget)
                 {
                     Tools.defaultTool.removeBlock(intersects[i].object);
                 }
+                else if(event.which == 3  && intersects[i].object.blockType == "speaker")
+                {
+                    Tools.defaultTool.unlinkSpeaker(intersects[i].object);
+                }
                 else
                 {
                     found = true;

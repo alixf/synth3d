@@ -23,6 +23,10 @@ window.DefaultTool = function(scene, camera)
                 {
                     this.removeBlock(block);
                 }
+                else if(event.which == 3 && block.blockType == "speaker")
+                {
+                    this.unlinkSpeaker(block);
+                }
                 else
                 {
                     Tools.transformTool.setBlock(block);
@@ -62,6 +66,30 @@ window.DefaultTool = function(scene, camera)
         if(block.audioNodeGain)
             block.audioNodeGain.disconnect();
         scene.remove(block);
+    }
+
+    this.unlinkSpeaker = function(block)
+    {
+        if(block.blockType == "speaker")
+        {
+            for (var linkedBlock = 0; linkedBlock < block.linkedTo.length; linkedBlock += 1)
+            {
+                for (var linkedBlock2 = 0; linkedBlock2 < block.linkedTo[linkedBlock][0].linkedTo.length; linkedBlock2 += 1)
+                {
+                    var lblock = block.linkedTo[linkedBlock][0].linkedTo[linkedBlock2];
+                    if(lblock[0] == block)
+                    {
+                        if(lblock[1])
+                        {
+                            block.linkedTo[linkedBlock][0].audioNodeGain.disconnect(block.audioNodeGain);
+                            scene.remove(lblock[1]);
+                        }
+                        block.linkedTo[linkedBlock][0].linkedTo.splice(linkedBlock2,1);
+                        linkedBlock2 -= 1;
+                    }
+                }
+            }
+        }
     }
 }
 //      var raycaster = new THREE.Raycaster();
