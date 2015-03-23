@@ -7,7 +7,10 @@ window.LinkTool = function(scene, camera)
     this.setBlock = function(block)
     {
         this.block = block;
-        this.spline = this.setLink(null, this.block.position, new THREE.Vector3(0,0,0), this.type);
+        if(this.block)
+            this.spline = this.setLink(null, this.block.position, new THREE.Vector3(0,0,0), this.type);
+        else
+            scene.remove(this.spline);
     }
     
     this.setType = function(type)

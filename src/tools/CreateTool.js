@@ -6,6 +6,8 @@ window.CreateTool = function(scene, camera)
     {
         return function(event)
         {
+            if(window.currentTool.setBlock)
+                window.currentTool.setBlock(null);
             window.currentTool = Tools.createTool;
             window.currentTool.setBlock(new Block());
         }
