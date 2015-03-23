@@ -71,3 +71,7 @@ h2
 {
     margin : 10px;
 }
+#signalCanvas
+{
+    width: 100%;
+}

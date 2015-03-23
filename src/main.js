@@ -14,6 +14,7 @@ window.onload = function()
 {
     // Set Renderer and scene
     var container = document.querySelector("#container");
+
     var renderer = new THREE.WebGLRenderer({antialias : true});
     renderer.setClearColor(new THREE.Color(127,127,127), 1);
     renderer.shadowMapEnabled = true;
@@ -43,7 +44,11 @@ window.onload = function()
     scene.add(new Ground());
 
     // Default Speaker Block
-    scene.add(new SpeakerBlock());
+    var speaker = new SpeakerBlock();
+    scene.add(speaker);
+    var canvas = document.querySelector("#signalCanvas");
+    var ratio = 50;
+    canvas.height = (canvas.width * ratio / 100);
 
     // Tools
     window.Tools =
@@ -85,6 +90,7 @@ window.onload = function()
         renderer.setSize(container.offsetWidth, container.offsetHeight);
         camera.aspect = container.offsetWidth / container.offsetHeight;
         camera.updateProjectionMatrix();
+        canvas.height = (canvas.width * ratio / 100);
     }
     window.addEventListener('resize', onResize);
     onResize();
@@ -98,6 +104,7 @@ window.onload = function()
             currentTool.update();
         
         renderer.render(scene, camera);
+        speaker.draw(canvas);
     };
     render();
 };
