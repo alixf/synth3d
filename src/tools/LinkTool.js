@@ -31,7 +31,7 @@ window.LinkTool = function(scene, camera)
         {
             if(this.type == 'signal')
             {
-                if(this.hoverBlock.blockType == 'speaker')
+                if(this.hoverBlock.blockType == 'speaker' || this.hoverBlock.blockType == 'adsr')
                 {
                     this.block.audioNodeGain.connect(this.hoverBlock.audioNodeGain);
                     this.linked = true;
@@ -54,13 +54,6 @@ window.LinkTool = function(scene, camera)
                 {
                     this.linked = true;
                 }
-            }
-            if(this.type == 'amp')
-            {
-                this.hoverBlock.ampIn = this.block;
-                this.hoverBlock.ampInLink = this.spline;
-                this.block.ampOut = this.hoverBlock;
-                this.block.ampOutLink = this.spline;
             }
             if(this.linked)
             {

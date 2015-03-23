@@ -63,14 +63,60 @@
                 <h2>Bloc ADSR</h2>
                 <div class="info">Ce bloc permet d'appliquer une enveloppe ADSR à un signal</div>
                 <hr>
+                <div>
+                <button class="noteOnADSR" on-click={{noteOnADSR}}>Note On</button>
+                <button class="noteOffADSR" on-click={{noteOffADSR}}>Note Off</button>
+                </div>
                 <h3>Entrée</h3>
-                <div><label for="">Attack : Amplitude</label><input type="number" step="any"></div>
-                <div><label for="">Attack : Timing</label><input type="number" step="any"></div>
-                <div><label for="">Decay : Amplitude</label><input type="number" step="any"></div>
-                <div><label for="">Decay : Timing</label><input type="number" step="any"></div>
-                <div><label for="">Sustain : Amplitude</label><input type="number" step="any"></div>
-                <div><label for="">Sustain : Timing</label><input type="number" step="any"></div>
-                <div><label for="">Release : Timing</label><input type="number" step="any"></div>
+                <div><label>Facteur 3D : </label><input id="factor" type="number" step="1" min="0" max="1000" value={{block.factor}}></div>
+                <h4>Attack</h4>
+                <div><label for="">Durée (sec) : </label><input type="number" step="0.05" min="0" max="5" value={{block.attack.value}}></div>
+                <div>
+                <label>Lier en 3D : </label>
+                <button class="linkAttack" on-click={{setAttackToNone}}>None</button>
+                <button class="linkAttack" on-click={{setAttackToX}}>X</button>
+                <button class="linkAttack" on-click={{setAttackToY}}>Y</button>
+                <button class="linkAttack" on-click={{setAttackToZ}}>Z</button>
+                </div>
+                <div><label for="">Facteur : </label><input type="number" step="0.05" min="1" max="2" value={{block.attackFactor.value}}></div>
+                <div>
+                <label>Lier en 3D : </label>
+                <button class="linkAttackFactor" on-click={{setAttackFactorToNone}}>None</button>
+                <button class="linkAttackFactor" on-click={{setAttackFactorToX}}>X</button>
+                <button class="linkAttackFactor" on-click={{setAttackFactorToY}}>Y</button>
+                <button class="linkAttackFactor" on-click={{setAttackFactorToZ}}>Z</button>
+                </div>
+                <h4>Decay</h4>
+                <div><label for="">Durée (sec) : </label><input type="number" step="0.05" min="0" max="2" value={{block.decay.value}}></div>
+                <div>
+                <label>Lier en 3D : </label>
+                <button class="linkDecay" on-click={{setDecayToNone}}>None</button>
+                <button class="linkDecay" on-click={{setDecayToX}}>X</button>
+                <button class="linkDecay" on-click={{setDecayToY}}>Y</button>
+                <button class="linkDecay" on-click={{setDecayToZ}}>Z</button>
+                </div>
+                <h4>Sustain</h4>
+                <div><label for="">Durée (sec) : </label><input type="number" step="0.5" min="0" max="10" value={{block.sustain.value}}></div>
+                <div>
+                <label>Lier en 3D : </label>
+                <button class="linkSustain" on-click={{setSustainToNone}}>None</button>
+                <button class="linkSustain" on-click={{setSustainToX}}>X</button>
+                <button class="linkSustain" on-click={{setSustainToY}}>Y</button>
+                <button class="linkSustain" on-click={{setSustainToZ}}>Z</button>
+                </div>
+                <div>
+                <label>Jouer le son : </label>
+                <button class="playADSR" on-click={{playADSR}}>Play</button>
+                </div>
+                <h4>Release</h4>
+                <div><label for="">Durée (sec) : </label><input type="number" step="0.05" min="0" max="5" value={{block.release.value}}></div>
+                <div>
+                <label>Lier en 3D : </label>
+                <button class="linkRelease" on-click={{setReleaseToNone}}>None</button>
+                <button class="linkRelease" on-click={{setReleaseToX}}>X</button>
+                <button class="linkRelease" on-click={{setReleaseToY}}>Y</button>
+                <button class="linkRelease" on-click={{setReleaseToZ}}>Z</button>
+                </div>
                 <h3>Sortie</h3>
                 <div layout vertical>
                                 <button class="linkBlock" on-click={{link}}>Lier le signal de sortie</button>
@@ -427,6 +473,171 @@
                     this.block.yFactor = null;
                 this.block.zFactor = this.block.audioNode.Q;
             },
+            setAttackToNone : function()
+            {
+                if(this.block.xFactor == this.block.attack)
+                    this.block.xFactor = null;
+                if(this.block.yFactor == this.block.attack)
+                    this.block.yFactor = null;
+                if(this.block.zFactor == this.block.attack)
+                    this.block.zFactor = null;
+            },
+            setAttackToX : function()
+            {
+                this.block.xFactor = this.block.attack;
+                if(this.block.yFactor == this.block.attack)
+                    this.block.yFactor = null;
+                if(this.block.zFactor == this.block.attack)
+                    this.block.zFactor = null;
+            },
+            setAttackToY : function()
+            {
+                if(this.block.xFactor == this.block.attack)
+                    this.block.xFactor = null;
+                this.block.yFactor = this.block.attack;
+                if(this.block.zFactor == this.block.attack)
+                    this.block.zFactor = null;
+            },
+            setAttackToZ : function()
+            {
+                if(this.block.xFactor == this.block.attack)
+                    this.block.xFactor = null;
+                if(this.block.yFactor == this.block.attack)
+                    this.block.yFactor = null;
+                this.block.zFactor = this.block.attack;
+            },
+            setAttackFactorToNone : function()
+            {
+                if(this.block.xFactor == this.block.attackFactor)
+                    this.block.xFactor = null;
+                if(this.block.yFactor == this.block.attackFactor)
+                    this.block.yFactor = null;
+                if(this.block.zFactor == this.block.attackFactor)
+                    this.block.zFactor = null;
+            },
+            setAttackFactorToX : function()
+            {
+                this.block.xFactor = this.block.attackFactor;
+                if(this.block.yFactor == this.block.attackFactor)
+                    this.block.yFactor = null;
+                if(this.block.zFactor == this.block.attackFactor)
+                    this.block.zFactor = null;
+            },
+            setAttackFactorToY : function()
+            {
+                if(this.block.xFactor == this.block.attackFactor)
+                    this.block.xFactor = null;
+                this.block.yFactor = this.block.attackFactor;
+                if(this.block.zFactor == this.block.attackFactor)
+                    this.block.zFactor = null;
+            },
+            setAttackFactorToZ : function()
+            {
+                if(this.block.xFactor == this.block.attackFactor)
+                    this.block.xFactor = null;
+                if(this.block.yFactor == this.block.attackFactor)
+                    this.block.yFactor = null;
+                this.block.zFactor = this.block.attackFactor;
+            },
+            setDecayToNone : function()
+            {
+                if(this.block.xFactor == this.block.decay)
+                    this.block.xFactor = null;
+                if(this.block.yFactor == this.block.decay)
+                    this.block.yFactor = null;
+                if(this.block.zFactor == this.block.decay)
+                    this.block.zFactor = null;
+            },
+            setDecayToX : function()
+            {
+                this.block.xFactor = this.block.decay;
+                if(this.block.yFactor == this.block.decay)
+                    this.block.yFactor = null;
+                if(this.block.zFactor == this.block.decay)
+                    this.block.zFactor = null;
+            },
+            setDecayToY : function()
+            {
+                if(this.block.xFactor == this.block.decay)
+                    this.block.xFactor = null;
+                this.block.yFactor = this.block.decay;
+                if(this.block.zFactor == this.block.decay)
+                    this.block.zFactor = null;
+            },
+            setDecayToZ : function()
+            {
+                if(this.block.xFactor == this.block.decay)
+                    this.block.xFactor = null;
+                if(this.block.yFactor == this.block.decay)
+                    this.block.yFactor = null;
+                this.block.zFactor = this.block.decay;
+            },
+            setSustainToNone : function()
+            {
+                if(this.block.xFactor == this.block.sustain)
+                    this.block.xFactor = null;
+                if(this.block.yFactor == this.block.sustain)
+                    this.block.yFactor = null;
+                if(this.block.zFactor == this.block.sustain)
+                    this.block.zFactor = null;
+            },
+            setSustainToX : function()
+            {
+                this.block.xFactor = this.block.sustain;
+                if(this.block.yFactor == this.block.sustain)
+                    this.block.yFactor = null;
+                if(this.block.zFactor == this.block.sustain)
+                    this.block.zFactor = null;
+            },
+            setSustainToY : function()
+            {
+                if(this.block.xFactor == this.block.sustain)
+                    this.block.xFactor = null;
+                this.block.yFactor = this.block.sustain;
+                if(this.block.zFactor == this.block.sustain)
+                    this.block.zFactor = null;
+            },
+            setSustainToZ : function()
+            {
+                if(this.block.xFactor == this.block.sustain)
+                    this.block.xFactor = null;
+                if(this.block.yFactor == this.block.sustain)
+                    this.block.yFactor = null;
+                this.block.zFactor = this.block.sustain;
+            },
+            setReleaseToNone : function()
+            {
+                if(this.block.xFactor == this.block.release)
+                    this.block.xFactor = null;
+                if(this.block.yFactor == this.block.release)
+                    this.block.yFactor = null;
+                if(this.block.zFactor == this.block.release)
+                    this.block.zFactor = null;
+            },
+            setReleaseToX : function()
+            {
+                this.block.xFactor = this.block.release;
+                if(this.block.yFactor == this.block.release)
+                    this.block.yFactor = null;
+                if(this.block.zFactor == this.block.release)
+                    this.block.zFactor = null;
+            },
+            setReleaseToY : function()
+            {
+                if(this.block.xFactor == this.block.release)
+                    this.block.xFactor = null;
+                this.block.yFactor = this.block.release;
+                if(this.block.zFactor == this.block.release)
+                    this.block.zFactor = null;
+            },
+            setReleaseToZ : function()
+            {
+                if(this.block.xFactor == this.block.release)
+                    this.block.xFactor = null;
+                if(this.block.yFactor == this.block.release)
+                    this.block.yFactor = null;
+                this.block.zFactor = this.block.release;
+            },
             loadSampleKickDrum : function()
             {
                 this.block.loadSample("samples/kickdrum.wav");
@@ -438,6 +649,18 @@
             playCurrentSample : function()
             {
                 this.block.playSample();
+            },
+            noteOnADSR : function()
+            {
+                this.block.noteOn();
+            },
+            noteOffADSR : function()
+            {
+                this.block.noteOff();
+            },
+            playADSR : function()
+            {
+                this.block.play();
             }
         });
     </script>

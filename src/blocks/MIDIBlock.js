@@ -14,6 +14,9 @@ window.MIDIBlock = function()
     mesh.xFactor = null;
     mesh.yFactor = null;
     mesh.zFactor = null;
+    mesh.oldX = 0;
+    mesh.oldY = 0.5;
+    mesh.oldZ = 0;
     mesh.factor = 1;
     mesh.updateFrequencies = function()
     {
