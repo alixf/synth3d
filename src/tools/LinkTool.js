@@ -34,8 +34,6 @@ window.LinkTool = function(scene, camera)
                 if(this.hoverBlock.blockType == 'speaker' || this.hoverBlock.blockType == 'adsr')
                 {
                     this.block.audioNodeGain.connect(this.hoverBlock.audioNodeGain);
-                    if(this.hoverBlock.blockType == 'adsr')
-                        this.hoverBlock.modulation = this.block.modulation;
                     this.linked = true;
                 }
                 if(this.hoverBlock.blockType == 'osc')
@@ -50,7 +48,6 @@ window.LinkTool = function(scene, camera)
                 if(this.hoverBlock.blockType == 'delay' || this.hoverBlock.blockType == 'filter')
                 {
                     this.block.audioNodeGain.connect(this.hoverBlock.audioNode);
-                    this.hoverBlock.modulation = this.block.modulation;
                     this.linked = true;
                 }
             }

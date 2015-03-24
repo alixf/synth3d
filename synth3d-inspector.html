@@ -55,12 +55,9 @@
                 </div>
                 <h3>Sortie</h3>
                 <div layout vertical>
-                    <div>
-                        <label>Type de synthèse : </label>
-                        <button class="setAM" on-click={{setAM}}>AM</button>
-                        <button class="setFM" on-click={{setFM}}>FM</button>
-                    </div>
-                                <button class="linkBlock" on-click={{link}}>Lier le signal de sortie</button>                   </div>
+                    <button class="linkBlock" on-click={{linkAM}}>Lier le signal de sortie (AM)</button>
+                    <button class="linkBlock" on-click={{linkFM}}>Lier le signal de sortie (FM)</button>
+                </div>
             </div>
         </template>
         <template if="{{block.blockType == 'adsr'}}">
@@ -124,8 +121,9 @@
                 </div>
                 <h3>Sortie</h3>
                 <div layout vertical>
-                                <button class="linkBlock" on-click={{link}}>Lier le signal de sortie</button>
-                   </div>
+                    <button class="linkBlock" on-click={{linkAM}}>Lier le signal de sortie (AM)</button>
+                    <button class="linkBlock" on-click={{linkFM}}>Lier le signal de sortie (FM)</button>
+                </div>
             </div>
         </template>
         <template if="{{block.blockType == 'midi'}}">
@@ -176,8 +174,9 @@
                 </div>
                 <h3>Sortie</h3>
                 <div layout vertical>
-                                <button class="linkBlock" on-click={{link}}>Lier le signal de sortie</button>                   </div>
-            </div>
+                    <button class="linkBlock" on-click={{linkAM}}>Lier le signal de sortie (AM)</button>
+                    <button class="linkBlock" on-click={{linkFM}}>Lier le signal de sortie (FM)</button>
+                </div>
         </template>
         <template if="{{block.blockType == 'filter'}}">
             <div id="filterBlock" class="blocEditor">
@@ -221,8 +220,9 @@
                 </div>
                 <h3>Sortie</h3>
                 <div layout vertical>
-                                <button class="linkBlock" on-click={{link}}>Lier le signal de sortie</button>                   </div>
-            </div>
+                    <button class="linkBlock" on-click={{linkAM}}>Lier le signal de sortie (AM)</button>
+                    <button class="linkBlock" on-click={{linkFM}}>Lier le signal de sortie (FM)</button>
+                </div>
         </template>
         <template if="{{block.blockType == 'sample'}}">
             <div id="sampleBlock" class="blocEditor">
@@ -248,8 +248,9 @@
                 </div>
                 <h3>Sortie</h3>
                 <div layout vertical>
-                                <button class="linkBlock" on-click={{link}}>Lier le signal de sortie</button>                   </div>
-            </div>
+                    <button class="linkBlock" on-click={{linkAM}}>Lier le signal de sortie (AM)</button>
+                    <button class="linkBlock" on-click={{linkFM}}>Lier le signal de sortie (FM)</button>
+                </div>
         </template>
         <template if="{{block.blockType == 'speaker'}}">
             <div id="delayBlock" class="blocEditor">
@@ -285,13 +286,23 @@
             {
                 this.block.updateFrequencies();
             },
-            setAM : function()
+            linkAM : function()
             {
                 this.block.modulation = "amp";
+                var blockToLink = this.block;
+                window.currentTool.setBlock(null);
+                window.currentTool = Tools.linkTool;
+                window.currentTool.setType(blockToLink.outType);
+                window.currentTool.setBlock(blockToLink);
             },
-            setFM : function()
+            linkFM : function()
             {
                 this.block.modulation = "freq";
+                var blockToLink = this.block;
+                window.currentTool.setBlock(null);
+                window.currentTool = Tools.linkTool;
+                window.currentTool.setType(blockToLink.outType);
+                window.currentTool.setBlock(blockToLink);
             },
             setOscTypeToSine : function()
             {
