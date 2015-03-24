@@ -14,6 +14,7 @@ window.OscillatorBlock = function()
     mesh.audioNode.connect(mesh.audioNodeGain);
     mesh.linkedTo = [];
     mesh.outType = "signal";
+    mesh.modulation = "freq";
     mesh.xFactor = null;
     mesh.yFactor = null;
     mesh.zFactor = null;

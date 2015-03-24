@@ -55,6 +55,11 @@
                 </div>
                 <h3>Sortie</h3>
                 <div layout vertical>
+                    <div>
+                        <label>Type de synthèse : </label>
+                        <button class="setAM" on-click={{setAM}}>AM</button>
+                        <button class="setFM" on-click={{setFM}}>FM</button>
+                    </div>
                                 <button class="linkBlock" on-click={{link}}>Lier le signal de sortie</button>                   </div>
             </div>
         </template>
@@ -279,6 +284,14 @@
             updateFreq : function()
             {
                 this.block.updateFrequencies();
+            },
+            setAM : function()
+            {
+                this.block.modulation = "amp";
+            },
+            setFM : function()
+            {
+                this.block.modulation = "freq";
             },
             setOscTypeToSine : function()
             {
