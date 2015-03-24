@@ -178,6 +178,37 @@
                     <button class="linkBlock" on-click={{linkFM}}>Lier le signal de sortie (FM)</button>
                 </div>
         </template>
+        <template if="{{block.blockType == 'loop'}}">
+            <div id="delayBlock" class="blocEditor">
+                <h2>Bloc Loop</h2>
+                <div class="info">Ce bloc cumule son entrée et la sort en boucle</div>
+                <hr>
+                <h3>Entrée</h3>
+                <div><label>Facteur 3D : </label><input id="factor" type="number" step="1" min="0" max="1000" value={{block.factor}}></div>
+                <h4>Boucle</h4>
+                <div><label for="">Durée (sec) : </label><input type="number" step="0.1" min="0" max="10" value={{block.audioNode.delayTime.value}}></div>
+                <div>
+                <label>Lier en 3D : </label>
+                <button class="linkDelay" on-click={{setDelayToNone}}>None</button>
+                <button class="linkDelay" on-click={{setDelayToX}}>X</button>
+                <button class="linkDelay" on-click={{setDelayToY}}>Y</button>
+                <button class="linkDelay" on-click={{setDelayToZ}}>Z</button>
+                </div>
+                <h4>Gain</h4>
+                <div><label for="">Valeur : </label><input type="number" step="0.1" min="0" max="1" value={{block.audioNodeGain.gain.value}}></div>
+                <div>
+                <label>Lier en 3D : </label>
+                <button class="linkGain" on-click={{setGainToNone}}>None</button>
+                <button class="linkGain" on-click={{setGainToX}}>X</button>
+                <button class="linkGain" on-click={{setGainToY}}>Y</button>
+                <button class="linkGain" on-click={{setGainToZ}}>Z</button>
+                </div>
+                <h3>Sortie</h3>
+                <div layout vertical>
+                    <button class="linkBlock" on-click={{linkAM}}>Lier le signal de sortie (AM)</button>
+                    <button class="linkBlock" on-click={{linkFM}}>Lier le signal de sortie (FM)</button>
+                </div>
+        </template>
         <template if="{{block.blockType == 'filter'}}">
             <div id="filterBlock" class="blocEditor">
                 <h2>Bloc Filtre</h2>

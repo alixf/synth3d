@@ -5,7 +5,7 @@ window.Textures =
     adsr : THREE.ImageUtils.loadTexture('textures/blocks_06.png'),
     midi : THREE.ImageUtils.loadTexture('textures/blocks_07.png'),
     am : THREE.ImageUtils.loadTexture('textures/blocks_09.png'),
-    fm : THREE.ImageUtils.loadTexture('textures/blocks_10.png'),
+    loop : THREE.ImageUtils.loadTexture('textures/blocks_10.png'),
     delay : THREE.ImageUtils.loadTexture('textures/blocks_11.png'),
     sample : THREE.ImageUtils.loadTexture('textures/blocks_12.png'),
     filter : THREE.ImageUtils.loadTexture('textures/blocks_09.png'),

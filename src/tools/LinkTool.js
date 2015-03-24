@@ -50,6 +50,11 @@ window.LinkTool = function(scene, camera)
                     this.block.audioNodeGain.connect(this.hoverBlock.audioNode);
                     this.linked = true;
                 }
+                if(this.hoverBlock.blockType == 'loop')
+                {
+                    this.block.audioNodeGain.connect(this.hoverBlock.audioNodeGate);
+                    this.linked = true;
+                }
             }
             if(this.type == 'freq')
             {
