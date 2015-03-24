@@ -89,6 +89,12 @@ window.DefaultTool = function(scene, camera)
                     }
                 }
             }
+            if(block.linkedTo[linkedBlock][1])
+            {
+                scene.remove(block.linkedTo[linkedBlock][1])
+            }
+            block.linkedTo.splice(linkedBlock,1);
+            linkedBlock -= 1;
         }
     }
 }
